@@ -2,7 +2,7 @@
   margin: 0px;
   padding: 0px;
   color: white;
-  text-align: center;
+  /* text-align: center; */
 }
 
 a {
@@ -75,6 +75,7 @@ header>.container nav>ul>li>a {
   padding-top: 29.5px;
   padding-left: 30px;
 }
+
 
 /* ///////////////// */
 /* 裝置螢幕大於768px */
@@ -451,10 +452,17 @@ h2,p {
   margin-top: 0;
   color: white;
   padding-top: 50px;
+  text-align: left;
+  
+}
+
+section{
+  text-align: center;
 }
 
 footer {
   background-color: #99791d;
+  text-align: center;
 }
 
 footer ul {
@@ -512,4 +520,55 @@ footer h2 {
 .page-top.active {
   right: 10px;
   transform: rotate(360deg);
+}
+
+.parent{
+  position: relative;
+  width: 1263px;
+  overflow: hidden;
+  margin: auto;
+}
+
+.parent img{
+width: 1263px;
+margin-top: 109px;
+}
+
+
+.child{
+width: 6315px;
+font-size: 0;
+
+}
+
+.left-arrow,.right-arrow{
+background-color: rgba(211, 227, 217, 0.301);
+position: absolute;
+cursor: pointer;
+width: 60px;
+display: flex;
+height:100%;
+top: 110px;
+align-items: center;
+justify-content: center;
+color:rgb(255, 255, 255);
+opacity: 0.8;
+font-size: 60px;
+}
+
+.left-arrow:hover ,.right-arrow:hover{
+  opacity: 1.0;
+}
+
+.left-arrow{
+  left: 0px
+
+}
+
+.right-arrow{
+  right:0px;
+}
+
+.indicator{
+
 }
