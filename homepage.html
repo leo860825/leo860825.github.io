@@ -5,8 +5,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>h6t p6t</title>
+
   <link rel="stylesheet" href="public/css/homepage.css">
   <link rel="stylesheet" href="public/js/WOW-master/css/libs/animate.css">
+  <link rel="shortcut icon" href="public/images/favicon.ico">
 </head>
 <header>
   <div class="container">
@@ -35,9 +37,9 @@
     <img src="images/banner8.jpg">
   </div>
 
-  <div class="left-arrow"><i class="fa-solid fa-chevron-left"></i>
-  </div>
-  <div class="right-arrow">></i></div>
+  <div class="left-arrow"><img src="images/left-arrow.png" alt=""></i></div>
+  <div class="right-arrow"><img src="images/right-arrow.png" alt=""></i></div>
+
   <ol class="indicator">
     <li class="active"></li>
     <li></li>
@@ -135,47 +137,56 @@
 <script src="public/js/WOW-master/dist/wow.min.js"></script>
 <script src="public/js/all.js"></script>
 <script>
-  //第二層裡面最前面 補上 圖片陣列中的最後一個 的複製元素
-  $('child').prepend($('.child>img').last().clone())
-  //第二層裡面最前面 補上 圖片陣列中的第二個 的複製元素
-  $('child').append($('.child>img').eq(1).clone())
-  
-  let currentLeftNum  = 0 //左邊位移的距離(0/-??)
-  let currentNum      = 1 //當前的數字
-  let parentWidth     = $('.parent').width() //父層寬度
-  let imgLength       = $('.child>img').length //子層圖片個數
+  $('.child').prepend($('.child>img').last().clone()) //第二層裡面最前面 補上 圖片陣列中的最後一個 的複製元素
+  $('.child').append($('.child>img').eq(1).clone()) //第二層裡面最後面 補上 圖片陣列中的第二個 的複製元素
+
+  let currentNum = 1 //當前的數字
+  let parentWidth = $('.parent').width() //父層寬度
+  let imgLength = $('.child>img').length //子層圖片個數
   let childTotalWidth = parentWidth * imgLength //父層寬度*子層圖片個數
 
-  //調整第二層一開始位移的位置
-  $('child').animate({'margin-left': -parentWidth * (currentNum) })
-                                    //-1903 * (1)
+  $(window).resize(function () {
+    parentWidth = $('.parent').width()
+    childTotalWidth = parentWidth * imgLength
+    $('.child').css({
+      'margin-left': -parentWidth * currentNum
+    })
+    $('.child').width(childTotalWidth)
+    $('.child').width(parentWidth)
+  }) //window resize end
 
-  $('.child').width( childTotalWidth ) //子層總寬 = 父層寬度*子層圖片個數(進到畫面讀一次)
-  $('.child>img').width( parentWidth ) //子層下的圖片寬 = 父層寬度
 
-  $('.right-arrow').on('click',function(){
-      if( currentNum == imgLength ){ //假如當前的數字相等於圖片總數
 
-        console.log('currentNum')
-      }else{
-          currentNum = currentNum + 1 //當前數字累加1
-          common()
-          // $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
-      }//if currentNum == imgLength end
-  })// .right-arrow end
 
-  $('.left-arrow').on('click',function(){
-      if ( currentNum == 1 ){
+  $('.child').css({
+    'margin-left': -parentWidth * currentNum
+  }) //調整第二層一開始位移的位置
+  $('.child').width(childTotalWidth) //子層總寬 = 父層寬度*子層圖片個數(進到畫面讀一次)
+  $('.child>img').width(parentWidth) //子層下的圖片寬 = 父層寬度
 
-      }else{
-          currentNum = currentNum - 1
-          common()
-          // $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
-      }//if currentNum == 1 end
+  $('.right-arrow').on('click', function () {
+    if (currentNum == imgLength - 1) { //假如當前的數字相等於圖片總數
 
-  })// .left-arrow end
+    } else {
+      console.log(currentNum, imgLength)
+      currentNum = currentNum + 1 //當前數字累加1
+      common()
+      // $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
+    } //if currentNum == imgLength end
+  }) // .right-arrow end
 
-$('.indicator>li').on('click',function(){
+  $('.left-arrow').on('click', function () {
+    if (currentNum == 0) {
+
+    } else {
+      currentNum = currentNum - 1
+      common()
+      // $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
+    } //if currentNum == 1 end
+
+  }) // .left-arrow end
+
+  $('.indicator>li').on('click', function () {
     // console.log( '當前的',currentNum )
     // console.log( '跟現在點擊的',$(this).index() ) //序列號
     // index() //序列號
@@ -184,14 +195,39 @@ $('.indicator>li').on('click',function(){
     common()
     // $('.indicator>li').eq(currentNum - 1).addClass('active')
     // $('.indicator>li').eq(currentNum - 1).siblings().removeClass('active')
-    })//.indicator>li end
-        
-    function common(){
-        $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
-        $('.indicator>li').eq(currentNum - 1).addClass('active')
-        $('.indicator>li').eq(currentNum - 1).siblings().removeClass('active')
-            
-    } // common() end
+  }) //.indicator>li end
+
+  function common() {
+    // $('.child').animate({'margin-left': -parentWidth * currentNum},callback)
+    $('.child').animate({
+      'margin-left': -parentWidth * currentNum
+    }, function () {
+      // callback 函式執行完之後執行
+      // if( currentNum == imgLength - 1 ){
+      // 假如當前的數字 相等於 總數-1
+      if (currentNum == imgLength - 1) {
+        currentNum = 1
+      }
+
+      if (currentNum == 0) {
+        currentNum = imgLength - 2
+      }
+
+      $('.child').css({
+        'margin-left': -parentWidth * currentNum
+      })
+      $('.indicator>li').eq(currentNum - 1).addClass('active')
+      $('.indicator>li').eq(currentNum - 1).siblings().removeClass('active')
+    }) //callback end
+
+    //前面動畫跑完時執行
+
+
+  } // common() end
+
+setInterval(function(){
+  $('.right-arrow').click()  
+},3000)
 
 </script>
 
