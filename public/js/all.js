@@ -63,10 +63,10 @@ $(window).resize(function(){
 // 捲軸事件
 
 // 定義捲軸高變數
-// let offsetTop
-// let product1Top = $('.product-section-1').offset().top 
-// $(window).scroll(function(){
-//     offsetTop = $(window).scrollTop()
+let offsetTop
+let product1Top = $('.product-section-1').offset().top 
+$(window).scroll(function(){
+    offsetTop = $(window).scrollTop()
     //console.log( '捲軸高', offsetTop )
     // console.log('product1',product1Top)
 //    if( offsetTop >=  product1Top){
@@ -74,14 +74,13 @@ $(window).resize(function(){
 //    }
 
 
-
     // 捲軸高度>=900，會出現page-top的按鈕
-//     if( offsetTop >= 900){
-//         $('.page-top').addClass('active')
-//     }else{
-//         $('.page-top').removeClass('active')
-//     }
-// })//scroll end
+    if( offsetTop >= 900){
+        $('.page-top').addClass('active')
+    }else{
+        $('.page-top').removeClass('active')
+    }
+})//scroll end
 
 // 點按page-top回到最上方
 $('.page-top').on('click', function(){
@@ -112,24 +111,24 @@ $('nav>ul>li').on('click',function(e){
     
 })// nav>ul>li end
 
-// function gsapAnimate(){
-//     // console.log('gsap')
-//     if( $(window).width() >= 768 ){
-//         $(window).scroll(function(){
-//             offsetTop = $(window).scrollTop()
-//             // console.log(offsetTop/10)
-//             gsap.to(".deco-1", {y: -offsetTop/10, duration: 1})
-//             gsap.to(".deco-2", {y: -offsetTop/5, duration: 1})
+function gsapAnimate(){
+    // console.log('gsap')
+    if( $(window).width() >= 768 ){
+        $(window).scroll(function(){
+            offsetTop = $(window).scrollTop()
+            // console.log(offsetTop/10)
+            gsap.to(".deco-1", {y: -offsetTop/10, duration: 1})
+            gsap.to(".deco-2", {y: -offsetTop/5, duration: 1})
             
-//         }) // scroll end
-//     }else{
-//         $(window).scroll(function(){
-//             offsetTop = $(window).scrollTop()
-//             // console.log(offsetTop/3)
-//             gsap.to(".deco-1", {y: -offsetTop/5, duration: 1})
-//             gsap.to(".deco-2", {y: -offsetTop/3, duration: 1})
+        }) // scroll end
+    }else{
+        $(window).scroll(function(){
+            offsetTop = $(window).scrollTop()
+            // console.log(offsetTop/3)
+            gsap.to(".deco-1", {y: -offsetTop/5, duration: 1})
+            gsap.to(".deco-2", {y: -offsetTop/3, duration: 1})
             
-//         }) // scroll end
-//     }
-// }
-// gsapAnimate()
+        }) // scroll end
+    }
+}
+gsapAnimate()

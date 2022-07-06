@@ -429,7 +429,7 @@
   }
 
   main input{
-    width: 90%;
+    width: 98%;
     background-color:black;
     border:2px solid lightgray;
     margin: 15px 0px 20px 0px;
@@ -439,7 +439,7 @@
   }
 
   main button{
-    width: 91%;
+    width: 99%;
     background-color:#99791d;
     margin: 15px 0px 20px 0px;
     border-radius: 6px;
@@ -454,7 +454,7 @@
     text-align: center;
     position: absolute;
     left: 43%;
-    top: 55%;
+    top: 75%;
     font-size: 20px;
     font-weight: bold;
   }
