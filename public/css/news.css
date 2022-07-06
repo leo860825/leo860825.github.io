@@ -2,7 +2,7 @@
     margin: 0px;
     padding: 0px;
     color: white;
-    text-align: center;
+    /* text-align: center; */
     list-style-type: none;
   }
   
@@ -64,8 +64,13 @@
     text-decoration: none;
     font-size: 1.2em;
     letter-spacing: 2px;
+   
   }
-  
+
+  main>.container.loremdiv{
+    text-align: center;
+  }
+
   /* header img 位置 */
   #logoicon {
     padding-top: 8px;
@@ -462,6 +467,8 @@ section>.container>.row p{
   
   footer {
     background-color: #99791d;
+    text-align: center;
+
   }
   
   footer ul {
@@ -475,6 +482,7 @@ section>.container>.row p{
   footer p {
     margin-bottom: 0;
     margin-top: 0;
+   
   }
   
   footer .col-4 {

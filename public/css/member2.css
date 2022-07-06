@@ -429,7 +429,7 @@ header>.container nav>ul>li>a {
 }
 
 main input{
-  width: 90%;
+  width: 98%;
   background-color:black;
   border:2px solid lightgray;
   margin: 15px 0px 20px 0px;
@@ -439,7 +439,7 @@ main input{
 }
 
 main button{
-  width: 91%;
+  width: 100%;
   background-color:#99791d;
   margin: 15px 0px 20px 0px;
   border-radius: 6px;
