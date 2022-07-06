@@ -28,15 +28,23 @@
 
 <div class="parent">
   <div class="child">
-  <img src="images/bgi2.jpg">
-  <img src="images/banner1.jpg">
-  <img src="images/banner6.jpg">
-  <img src="images/banner10.jpg">
-  <img src="images/banner8.jpg">
+    <img src="images/bgi2.jpg">
+    <img src="images/banner1.jpg">
+    <img src="images/banner6.jpg">
+    <img src="images/banner10.jpg">
+    <img src="images/banner8.jpg">
   </div>
 
-  <div class="left-arrow"><</i></div>
+  <div class="left-arrow"><i class="fa-solid fa-chevron-left"></i>
+  </div>
   <div class="right-arrow">></i></div>
+  <ol class="indicator">
+    <li class="active"></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ol>
 </div>
 
 <br><br><br><br><br><br><br>
@@ -86,9 +94,9 @@
         </div>
         <div class="col-12 col-md-4"><a class="img-wrap" href=""><img class="img-fluid img-rounded img-wrap img-overlay"
               src="images/meat.jpg" alt=""></a><span> 肉肉吃到飽</span>
+        </div>
       </div>
     </div>
-  </div>
 </section>
 <footer>
   <div class="container">
@@ -121,39 +129,72 @@
   </div>
 </footer>
 <a class="page-top" href="javascript:;">top</a>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
 <script src="public/js/WOW-master/dist/wow.min.js"></script>
 <script src="public/js/all.js"></script>
 <script>
-  let currentLeftNum = 0
+  //第二層裡面最前面 補上 圖片陣列中的最後一個 的複製元素
+  $('child').prepend($('.child>img').last().clone())
+  //第二層裡面最前面 補上 圖片陣列中的第二個 的複製元素
+  $('child').append($('.child>img').eq(1).clone())
+  
+  let currentLeftNum  = 0 //左邊位移的距離(0/-??)
+  let currentNum      = 1 //當前的數字
+  let parentWidth     = $('.parent').width() //父層寬度
+  let imgLength       = $('.child>img').length //子層圖片個數
+  let childTotalWidth = parentWidth * imgLength //父層寬度*子層圖片個數
+
+  //調整第二層一開始位移的位置
+  $('child').animate({'margin-left': -parentWidth * (currentNum) })
+                                    //-1903 * (1)
+
+  $('.child').width( childTotalWidth ) //子層總寬 = 父層寬度*子層圖片個數(進到畫面讀一次)
+  $('.child>img').width( parentWidth ) //子層下的圖片寬 = 父層寬度
+
   $('.right-arrow').on('click',function(){
-      if( currentLeftNum == -1500 ){
+      if( currentNum == imgLength ){ //假如當前的數字相等於圖片總數
 
+        console.log('currentNum')
       }else{
-          // 每點一次箭頭會扣500
-          currentLeftNum = currentLeftNum - 1263
-          console.log(currentLeftNum)
-          // 第二層 動畫 left位移一張圖片寬
-          $('.child').animate({'margin-left': currentLeftNum})
-      }
-
+          currentNum = currentNum + 1 //當前數字累加1
+          common()
+          // $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
+      }//if currentNum == imgLength end
   })// .right-arrow end
 
   $('.left-arrow').on('click',function(){
-      if( currentLeftNum == 0 ){
-          // 假如 currentLeftNum == 0，執行這段
-      }else{
-          // 假如 currentLeftNum != 0，執行這段
-          // 每點一次箭頭會扣500
-          currentLeftNum = currentLeftNum + 1263
-          // console.log(currentLeftNum)
-          // 第二層 動畫 left位移一張圖片寬
-          $('.child').animate({'margin-left': currentLeftNum})
+      if ( currentNum == 1 ){
 
-      }// if currentLeftNum end
+      }else{
+          currentNum = currentNum - 1
+          common()
+          // $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
+      }//if currentNum == 1 end
+
   })// .left-arrow end
+
+$('.indicator>li').on('click',function(){
+    // console.log( '當前的',currentNum )
+    // console.log( '跟現在點擊的',$(this).index() ) //序列號
+    // index() //序列號
+    // eq() //第幾個的元素
+    currentNum = $(this).index() + 1 // 當前的數字 = 點擊的序列號 + 1
+    common()
+    // $('.indicator>li').eq(currentNum - 1).addClass('active')
+    // $('.indicator>li').eq(currentNum - 1).siblings().removeClass('active')
+    })//.indicator>li end
+        
+    function common(){
+        $('.child').animate({'margin-left': -parentWidth * (currentNum - 1)})
+        $('.indicator>li').eq(currentNum - 1).addClass('active')
+        $('.indicator>li').eq(currentNum - 1).siblings().removeClass('active')
+            
+    } // common() end
+
 </script>
 
-  </body>
+</body>
+
 </html>

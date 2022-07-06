@@ -13,6 +13,7 @@ a {
 
 body {
   background-color: black;
+  border: 0;
 }
 
 .container {
@@ -524,19 +525,19 @@ footer h2 {
 
 .parent{
   position: relative;
-  width: 1263px;
+  width: 100%;
   overflow: hidden;
   margin: auto;
+  max-width: 1903px;
 }
 
 .parent img{
-width: 1263px;
 margin-top: 109px;
 }
 
 
 .child{
-width: 6315px;
+/* width: 6315px; */
 font-size: 0;
 
 }
@@ -570,5 +571,26 @@ font-size: 60px;
 }
 
 .indicator{
-
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  bottom:10px;
+  left:50%;
+  transform: translateX(-50%);
+}
+.indicator>li{
+  width: 10px;
+  height: 10px;
+  background-color: lightgray;
+  border-radius: 50%;
+  margin-right: 10px;
+  cursor: pointer;
+}
+.indicator>li:last-child{
+  margin-right: 0;
+}
+.indicator>li.active{
+  background-color: tomato;
 }
