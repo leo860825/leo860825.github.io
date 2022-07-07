@@ -494,4 +494,32 @@
     width: 50%;
   }
   
+  .page-top {
+    position: fixed;
+    bottom: 10px;
+    background: #99791d;
+    width: 70px;
+    height: 70px;
+    /* line-height: 40px; */
+    border-radius: 50%;
+    display: block;
+    text-align: center;
+    right: -100px;
+    transform: rotate(0deg);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+  }
+  
+  .page-top.active {
+    right: 30px;
+    transform: rotate(360deg);
+  }
+
+  .page-top img{
+    width: 50px;
+    height: 50px;
+  
+  }
   

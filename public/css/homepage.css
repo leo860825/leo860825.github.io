@@ -527,6 +527,7 @@ footer h2 {
 .page-top.active {
   right: 30px;
   transform: rotate(360deg);
+  
 }
 
 .page-top img{
