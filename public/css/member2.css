@@ -34,7 +34,7 @@ body {
   display: block;
   display: flex;
   padding-top: 50px;
-  width: 18% ;
+  width: 19% ;
   border-bottom: 1px solid #99791d ;
 }
 
@@ -103,7 +103,7 @@ header>.container nav>ul>li>a {
 
  
   header>.container nav>ul>li {
-    margin-left: 45px;
+    margin-left: 30px;
     
   }
 

@@ -35,7 +35,7 @@
     display: block;
     display: flex;
     padding-top: 50px;
-    width: 10% ;
+    width: 11% ;
     border-bottom: 1px solid #99791d ;
   }
   
@@ -104,7 +104,7 @@
   
    
     header>.container nav>ul>li {
-      margin-left: 45px;
+      margin-left: 30px;
       
     }
   
@@ -434,7 +434,7 @@
   }
 
   main input{
-    width: 1140px;
+    width: 1050px;
     text-align: left;
     background-color: black;
     border:2px solid lightgray;
@@ -447,7 +447,7 @@
 
   main textarea{
     background-color:white;
-    width: 1140px;
+    width: 1050px;
     background-color: black;
     border-radius: 6px;
     border:2px solid lightgray;
